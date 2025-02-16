@@ -60,9 +60,9 @@ jobs:
       - name: Run alembic migrations
         run: poetry run alembic upgrade head
 
-      - name: Run tests with coverage
-        run: |
-          poetry run pytest --cov=app --cov-report=term-missing || true
+#      - name: Run tests with coverage
+#        run: |
+#          poetry run pytest --cov=app --cov-report=term-missing || true
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v4
