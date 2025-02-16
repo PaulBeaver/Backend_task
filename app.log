@@ -158,3 +158,52 @@
 2025-02-15 11:40:16,229 - my_logger - DEBUG - Session is dirty or in transaction. Commit!
 2025-02-15 12:14:35,794 - my_logger - DEBUG - No changes, no need to commit.
 2025-02-15 12:17:06,116 - my_logger - DEBUG - No changes, no need to commit.
+2025-02-16 15:55:26,931 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedTableError'>: relation "products" does not exist
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Test Product', 100.0, 5
+2025-02-16 15:55:27,449 - my_logger - ERROR - Rollback session: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/starlette/middleware/base.py:151> cb=[TaskGroup._spawn.<locals>.task_done() at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:789]> got Future <Future pendi
+2025-02-16 15:55:27,893 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('
+2025-02-16 15:55:28,366 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('
+2025-02-16 15:55:28,772 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER), (now(), $5::VARCHAR, $6::NUMERIC(15, 2), $7::NUMERIC(15, 2), $8::INTEGER)]
+[parameters: ('Product 1', 10.0, 5.0, 50, 'Product 2'
+2025-02-16 15:55:29,203 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT count(*) AS count_1 
+FROM products]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:00:12,873 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedTableError'>: relation "products" does not exist
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Test Product', 100.0, 5
+2025-02-16 16:00:13,339 - my_logger - ERROR - Rollback session: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/starlette/middleware/base.py:151> cb=[TaskGroup._spawn.<locals>.task_done() at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:789]> got Future <Future pendi
+2025-02-16 16:00:13,739 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('
+2025-02-16 16:00:14,170 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('
+2025-02-16 16:00:14,538 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER), (now(), $5::VARCHAR, $6::NUMERIC(15, 2), $7::NUMERIC(15, 2), $8::INTEGER)]
+[parameters: ('Product 1', 10.0, 5.0, 50, 'Product 2'
+2025-02-16 16:00:14,937 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT count(*) AS count_1 
+FROM products]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:11:24,758 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedTableError'>: relation "orders_products" does not exist
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background
+2025-02-16 16:11:25,223 - my_logger - ERROR - Rollback session: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/starlette/middleware/base.py:151> cb=[TaskGroup._spawn.<locals>.task_done() at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:789]> got Future <Future pendi
+2025-02-16 16:11:25,621 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1,
+2025-02-16 16:11:26,053 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1,
+2025-02-16 16:11:26,487 - my_logger - ERROR - Rollback session: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT count(*) AS count_1 
+FROM orders_products]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
