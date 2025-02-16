@@ -17,5 +17,4 @@ class ProductSchema(ProductSchemaCreate):
     created_at: datetime | None = Field(None)
 
 
-
 # field(default = None)

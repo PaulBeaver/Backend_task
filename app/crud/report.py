@@ -6,12 +6,15 @@ from typing_extensions import TypeVar
 
 from app.crud.base import CrudBase
 
-T = TypeVar('T')
+
+T = TypeVar("T")
+
 
 class CrudReport(CrudBase):
     async def get_report(self, session: AsyncSession, start_date: str, end_date: str):
         start_date, end_date = datetime.strptime(start_date, "%Y-%m-%d"), datetime.strptime(end_date, "%Y-%m-%d")
-        stmt = text("""WITH sales_data AS (
+        stmt = text(
+            """WITH sales_data AS (
             SELECT
                 op.order_id,
                 op.product_id,
@@ -71,7 +74,8 @@ class CrudReport(CrudBase):
             total_revenue tr,
             total_profit tp,
             units_sold us,
-            returns r;""")
+            returns r;"""
+        )
         result = await session.execute(stmt, {"start_date": start_date, "end_date": end_date})
         report = result.mappings().one()
         return report

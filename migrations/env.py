@@ -1,29 +1,28 @@
 import asyncio
+import os
 from logging.config import fileConfig
 
-import os
 
-if os.environ.get('PYTEST'):
+if os.environ.get("PYTEST"):
     import pytest
 
+from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-from alembic import context
-from app.models import Base
 from app.config import settings
-
+from app.models import Base
 
 
 config = context.config
 
 section = config.config_ini_section
-config.set_section_option(section, 'DB_HOST', settings.DB_HOST)
-config.set_section_option(section, 'DB_NAME', settings.DB_NAME)
-config.set_section_option(section, 'DB_PASS', settings.DB_PASS)
-config.set_section_option(section, 'DB_PORT', settings.DB_PORT)
-config.set_section_option(section, 'DB_USER', settings.DB_USER)
+config.set_section_option(section, "DB_HOST", settings.DB_HOST)
+config.set_section_option(section, "DB_NAME", settings.DB_NAME)
+config.set_section_option(section, "DB_PASS", settings.DB_PASS)
+config.set_section_option(section, "DB_PORT", settings.DB_PORT)
+config.set_section_option(section, "DB_USER", settings.DB_USER)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)

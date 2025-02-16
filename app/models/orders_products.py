@@ -1,4 +1,4 @@
-from sqlalchemy import TIMESTAMP, BigInteger, ForeignKey, Integer, func, UniqueConstraint, Index
+from sqlalchemy import TIMESTAMP, BigInteger, ForeignKey, Index, Integer, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base

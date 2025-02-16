@@ -3,19 +3,25 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.midlewares import DBSessionMiddleware, setup_error_middleware
-from app.routers import order_router, product_router, report_router, order_product_router
 from app.cahce import init_redis_cache
+from app.midlewares import DBSessionMiddleware, setup_error_middleware
+from app.routers import order_product_router, order_router, product_router, report_router
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await init_redis_cache()
     yield
 
+
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
-    CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"]
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 app.include_router(order_router, tags=["Orders"])
 app.include_router(order_product_router, tags=["OrdersProducts"])

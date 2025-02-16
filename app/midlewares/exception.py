@@ -1,9 +1,10 @@
-from fastapi import FastAPI, Request, status
-from fastapi.responses import JSONResponse
-from fastapi.exceptions import HTTPException
-from typing import Union, Any
+from typing import Any, Union
 
+from fastapi import FastAPI, Request, status
+from fastapi.exceptions import HTTPException
+from fastapi.responses import JSONResponse
 from pydantic import ValidationError
+
 from app.logger import logger
 
 
@@ -16,21 +17,18 @@ class ErrorHandlingMiddleware:
             return await call_next(request)
         except HTTPException as exc:
             logger.error(f"Http error occurred: {exc}")
-            return JSONResponse(
-                status_code=exc.status_code,
-                content={"detail": exc.detail}
-            )
+            return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
         except ValidationError as exc:
             logger.error(f"Validation error occurred: {exc}")
             return JSONResponse(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                content={"detail": exc.errors()}
+                content={"detail": exc.errors()},
             )
         except Exception as exc:
             logger.error(f"Unexpected error occurred: {exc}")
             return JSONResponse(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                content={"detail": "Internal server error occurred. Please try again later."}
+                content={"detail": "Internal server error occurred. Please try again later."},
             )
 
 

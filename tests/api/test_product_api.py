@@ -7,7 +7,7 @@ async def test_create_product(async_client):
         "product_name": "Test Product",
         "price": 100.0,
         "cost": 50.0,
-        "stock": 10
+        "stock": 10,
     }
     response = await async_client.post("/products", json=payload)
     assert response.status_code == 201
@@ -25,7 +25,7 @@ async def test_get_product(async_client):
         "product_name": "Test Product",
         "price": 100.0,
         "cost": 50.0,
-        "stock": 10
+        "stock": 10,
     }
     create_response = await async_client.post("/products", json=create_payload)
     product_id = create_response.json()["id"]
@@ -43,7 +43,7 @@ async def test_delete_product(async_client):
         "product_name": "To Delete",
         "price": 50.0,
         "cost": 20.0,
-        "stock": 5
+        "stock": 5,
     }
     create_response = await async_client.post("/products", json=create_payload)
     product_id = create_response.json()["id"]
@@ -61,7 +61,7 @@ async def test_update_product(async_client):
         "product_name": "Old Name",
         "price": 10.0,
         "cost": 5.0,
-        "stock": 15
+        "stock": 15,
     }
     create_response = await async_client.post("/products", json=create_payload)
     product_id = create_response.json()["id"]
@@ -70,7 +70,7 @@ async def test_update_product(async_client):
         "product_name": "New Name",
         "price": 20.0,
         "cost": 10.0,
-        "stock": 30
+        "stock": 30,
     }
     response = await async_client.put(f"/products/{product_id}", json=update_payload)
     assert response.status_code == 200
@@ -85,7 +85,7 @@ async def test_update_product(async_client):
 async def test_batch_create_products(async_client):
     payload = [
         {"product_name": "Product 1", "price": 10.0, "cost": 5.0, "stock": 50},
-        {"product_name": "Product 2", "price": 20.0, "cost": 10.0, "stock": 30}
+        {"product_name": "Product 2", "price": 20.0, "cost": 10.0, "stock": 30},
     ]
     response = await async_client.post("/products/batch", json=payload)
     assert response.status_code == 201

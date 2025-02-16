@@ -1,8 +1,8 @@
 import pytest
-
 from sqlalchemy import text
 
 from app.db import async_session_maker
+
 
 @pytest.mark.asyncio
 async def test_db():
@@ -16,5 +16,5 @@ async def test_db():
         current_user = user_result.scalar()
         current_db_name = db_name_result.scalar()
 
-        assert current_user == 'test'
-        assert current_db_name == 'test'
+        assert current_user == "test"
+        assert current_db_name == "test"

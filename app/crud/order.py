@@ -1,11 +1,10 @@
 from datetime import datetime
 
-
-from sqlalchemy import text, select, func
+from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.base import CrudBase, S
-from app.models import Order, Product, OrdersProducts
+from app.models import Order, OrdersProducts, Product
 from app.schemas.order import OrderReturnSchema
 
 
@@ -17,13 +16,18 @@ class CrudOrder(CrudBase):
                 Order.created_at.label("order_created_at"),
                 func.json_agg(
                     func.jsonb_build_object(
-                        "product_id", Product.id,
-                        "product_name", Product.product_name,
-                        "amount", OrdersProducts.amount,
-                        "price", Product.price,
-                        "cost", Product.cost
+                        "product_id",
+                        Product.id,
+                        "product_name",
+                        Product.product_name,
+                        "amount",
+                        OrdersProducts.amount,
+                        "price",
+                        Product.price,
+                        "cost",
+                        Product.cost,
                     )
-                ).label("products")
+                ).label("products"),
             )
             .join(OrdersProducts, Order.id == OrdersProducts.order_id)
             .join(Product, OrdersProducts.product_id == Product.id)
@@ -34,11 +38,7 @@ class CrudOrder(CrudBase):
         result = await session.execute(query)
         return result.mappings().first() if result else {}
 
-    async def create_order(
-            self,
-            session: AsyncSession,
-            create_obj
-    ) -> int:
+    async def create_order(self, session: AsyncSession, create_obj) -> int:
         """
         Creates an order and associated order products in the database.
 
@@ -54,21 +54,23 @@ class CrudOrder(CrudBase):
         if len(create_obj.product_ids) != len(create_obj.amounts):
             raise ValueError("The lengths of product_ids and amounts must match.")
 
-        call_function_stmt = text("""
+        call_function_stmt = text(
+            """
             SELECT create_order_with_products(
                 :product_ids, 
                 :amounts, 
                 :order_created_at
             ) AS order_id;
-        """)
+        """
+        )
 
         result = await session.execute(
             call_function_stmt,
             {
                 "product_ids": create_obj.product_ids,
                 "amounts": create_obj.amounts,
-                "order_created_at": datetime.now()
-            }
+                "order_created_at": datetime.now(),
+            },
         )
 
         order_id = result.scalar()
