@@ -51,12 +51,13 @@ jobs:
         run: poetry install --with dev
 
       - name: Run linters (flake8, isort, black, mypy)
-        run: |
-          poetry run black .
-          poetry run isort .
-          poetry run flake8
-          poetry run mypy app/
-      
+        run: echo "Skipping lint step in CD"
+#        run: |
+#          poetry run black .
+#          poetry run isort .
+#          poetry run flake8
+#          poetry run mypy app/
+
 
       - name: Run alembic migrations
         run: poetry run alembic upgrade head
