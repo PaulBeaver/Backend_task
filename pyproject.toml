@@ -1,6 +1,6 @@
 [project]
 name = "poetry-commerce"
-version = "skip"
+version = "0.1.0"
 description = "skip"
 authors = [
     {name = "Pavel Bobrov"}
