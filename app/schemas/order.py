@@ -6,12 +6,15 @@ from .base import BaseSchema
 
 
 class OrderSchemaCreate(BaseSchema):
-    pass
+    product_ids: list[int] = Field(...)
+    amounts: list[int] = Field(...)
 
 
 class OrderSchema(OrderSchemaCreate):
     id: int = Field(..., gt=0)
-    created_at: datetime | None = Field(None)
+    created_at: datetime = Field(...)
 
 
-# field(default = None)
+class OrderReturnSchema(BaseSchema):
+    id: int = Field(..., gt=0)
+    created_at: datetime = Field(...)

@@ -11,13 +11,7 @@ class DBSessionMiddleware(BaseHTTPMiddleware):
         request.state.session = session
         try:
             response = await call_next(request)
-
-            if session.dirty or session.in_transaction():
-                logger.debug("Session is dirty or in transaction. Commit!")
-                await session.commit()
-            else:
-                logger.debug("No changes, no need to commit.")
-
+            await session.commit()
             return response
         except Exception as e:
             logger.error(f"Rollback session: {str(e)[:450]}")

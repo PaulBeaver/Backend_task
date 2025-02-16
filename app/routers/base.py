@@ -10,7 +10,7 @@ T = TypeVar("T")
 
 
 class BaseRouter:
-    def __init__(self, model_crud: CrudBase, prefix: str) -> None:
+    def __init__(self, model_crud: CrudBase | None, prefix: str) -> None:
         self.router = APIRouter()
         self.model_crud = model_crud
         self.prefix = prefix

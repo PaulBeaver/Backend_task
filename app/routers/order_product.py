@@ -11,13 +11,13 @@ class OrderProductRouter(BaseRouter):
         super().__init__(model_crud, prefix)
 
     def setup_routes(self) -> None:
-        self.router.add_api_route(f"{self.prefix}/count", self.get_count, methods=["GET"], status_code=200)
-        self.router.add_api_route(f"{self.prefix}/{{id}}", self.get_by_id, methods=["GET"], status_code=200)
+        self.router.add_api_route(f"{self.prefix}-count", self.get_count, methods=["GET"], status_code=200)
+        self.router.add_api_route(f"{self.prefix}-{{id}}", self.get_by_id, methods=["GET"], status_code=200)
         self.router.add_api_route(f"{self.prefix}", self.create, methods=["POST"], status_code=201)
         self.router.add_api_route(f"{self.prefix}/{{id}}", self.delete, methods=["DELETE"], status_code=202)
         self.router.add_api_route(f"{self.prefix}/{{id}}", self.update, methods=["PUT"], status_code=200)
-        self.router.add_api_route(f"{self.prefix}/batch", self.batch_create, methods=["POST"], status_code=201)
-        self.router.add_api_route(f"{self.prefix}/batch", self.batch_delete, methods=["DELETE"], status_code=202)
+        self.router.add_api_route(f"{self.prefix}-batch", self.batch_create, methods=["POST"], status_code=201)
+        self.router.add_api_route(f"{self.prefix}-batch", self.batch_delete, methods=["DELETE"], status_code=202)
 
     async def get_paginated(self, request: Request, page: int = 1, page_size: int = 2) -> list[OrderProductsSchema]:
         return await super().get_paginated(request, page, page_size)

@@ -1,4 +1,4 @@
-from sqlalchemy import TIMESTAMP, BigInteger, ForeignKey, Integer, func
+from sqlalchemy import TIMESTAMP, BigInteger, ForeignKey, Integer, func, UniqueConstraint, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
@@ -16,6 +16,9 @@ class OrdersProducts(Base):
     orders = relationship("Order", back_populates="orders_products")
     products = relationship("Product", back_populates="orders_products")
 
-    # index order id prod id
     # __rw_fields__ =(...)
-    # uniq constrain prod_id order_id
+    __table_args__ = (
+        UniqueConstraint("order_id", "product_id", name="uq_order_product"),
+        Index("idx_order_id", "order_id"),
+        Index("idx_product_id", "product_id"),
+    )

@@ -55,7 +55,6 @@ class CrudBase(Generic[M, S]):
 
     async def batch_create(self, session: AsyncSession, create_objs: list[S]):
         create_dicts = [obj.model_dump() for obj in create_objs]
-        print(create_dicts)
         stmt = insert(self.model).values(create_dicts)
         await session.execute(stmt)
         return None
