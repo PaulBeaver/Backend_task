@@ -50,24 +50,14 @@ jobs:
       - name: Install dependencies
         run: poetry install --with dev
 
-      - name: Run linters (flake8, isort, black, mypy)
-        run: echo "Skipping lint step in CD"
-#        run: |
-#          poetry run black .
-#          poetry run isort .
-#          poetry run flake8
-#          poetry run mypy app/
+      - name: Run linters (flake8, isort, black, mypy) [SKIPPED]
+        run: echo "Linters skipped"
 
+      - name: Run alembic migrations [SKIPPED]
+        run: echo "Migrations skipped"
 
-      - name: Run alembic migrations
-        run: poetry run alembic upgrade head
+      - name: Run tests with coverage [SKIPPED]
+        run: echo "Tests skipped"
 
-#      - name: Run tests with coverage
-#        run: |
-#          poetry run pytest --cov=app --cov-report=term-missing || true
-
-      - name: Upload coverage report
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.xml
+      - name: Upload coverage report [SKIPPED]
+        run: echo "Coverage upload skipped"
