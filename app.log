@@ -207,3 +207,90 @@ FROM products]
 [SQL: SELECT count(*) AS count_1 
 FROM orders_products]
 (Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:49:51,929 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedTableError'>: relation "orders_products" does not exist
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-02-16 16:49:51,939 - my_logger - ERROR - Unexpected error occurred: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/starlette/middleware/base.py:151> cb=[TaskGroup._spawn.<locals>.task_done() at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:789]> got Future <Future pending cb=[Protocol._on_waiter_completed()]> attached to a different loop
+2025-02-16 16:49:51,949 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:49:51,957 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:49:51,973 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Test Product', 100.0, 50.0, 10)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:49:51,981 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Test Product', 100.0, 50.0, 10)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:49:51,990 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('To Delete', 50.0, 20.0, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:49:51,998 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Old Name', 10.0, 5.0, 15)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:40,534 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedTableError'>: relation "orders_products" does not exist
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-02-16 16:50:40,545 - my_logger - ERROR - Unexpected error occurred: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/starlette/middleware/base.py:151> cb=[TaskGroup._spawn.<locals>.task_done() at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:789]> got Future <Future pending cb=[Protocol._on_waiter_completed()]> attached to a different loop
+2025-02-16 16:50:40,554 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:40,563 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:40,581 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Test Product', 100.0, 50.0, 10)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:40,591 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Test Product', 100.0, 50.0, 10)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:40,601 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('To Delete', 50.0, 20.0, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:40,611 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Old Name', 10.0, 5.0, 15)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:47,607 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedTableError'>: relation "orders_products" does not exist
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-02-16 16:50:47,621 - my_logger - ERROR - Unexpected error occurred: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/starlette/middleware/base.py:151> cb=[TaskGroup._spawn.<locals>.task_done() at /home/user/work/TestTask/.venv/lib/python3.10/site-packages/anyio/_backends/_asyncio.py:789]> got Future <Future pending cb=[Protocol._on_waiter_completed()]> attached to a different loop
+2025-02-16 16:50:47,630 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:47,640 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO orders_products (created_at, order_id, product_id, amount) VALUES (now(), $1::BIGINT, $2::BIGINT, $3::INTEGER) RETURNING orders_products.id, orders_products.created_at, orders_products.order_id, orders_products.product_id, orders_products.amount]
+[parameters: (1, 1, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:47,660 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Test Product', 100.0, 50.0, 10)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:47,670 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Test Product', 100.0, 50.0, 10)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:47,681 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('To Delete', 50.0, 20.0, 5)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-16 16:50:47,694 - my_logger - ERROR - Unexpected error occurred: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO products (created_at, product_name, price, cost, stock) VALUES (now(), $1::VARCHAR, $2::NUMERIC(15, 2), $3::NUMERIC(15, 2), $4::INTEGER) RETURNING products.id, products.created_at, products.product_name, products.price, products.cost, products.stock]
+[parameters: ('Old Name', 10.0, 5.0, 15)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
