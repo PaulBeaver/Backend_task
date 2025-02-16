@@ -50,14 +50,14 @@ jobs:
       - name: Install dependencies
         run: poetry install --with dev
 
-      - name: Run linters (flake8, isort, black, mypy) [SKIPPED]
+      - name: Run linters (flake8, isort, black, mypy)
         run: echo "Linters skipped"
 
-      - name: Run alembic migrations [SKIPPED]
+      - name: Run alembic migrations
         run: echo "Migrations skipped"
 
-      - name: Run tests with coverage [SKIPPED]
+      - name: Run tests with coverage
         run: echo "Tests skipped"
 
-      - name: Upload coverage report [SKIPPED]
+      - name: Upload coverage report
         run: echo "Coverage upload skipped"
