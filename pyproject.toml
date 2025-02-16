@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "skip"}
 readme = "README.md"
-requires-python = "skip"
+requires-python = ">=3.10"
 dependencies = [
 ]
 
