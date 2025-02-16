@@ -3,6 +3,7 @@ import pytest
 
 @pytest.mark.asyncio
 async def test_create_order_product(async_client):
+    # Test creating an order-product relation - expects status 201 and correct payload in response
     payload = {"order_id": 1, "product_id": 1, "amount": 5}
     response = await async_client.post("/orders_products", json=payload)
     assert response.status_code == 201
@@ -15,6 +16,7 @@ async def test_create_order_product(async_client):
 
 @pytest.mark.asyncio
 async def test_get_order_product(async_client):
+    # Test retrieving an order-product relation by ID - expects status 200 and correct ID in response
     create_payload = {"order_id": 1, "product_id": 1, "amount": 5}
     create_response = await async_client.post("/orders_products", json=create_payload)
     assert create_response.status_code == 201
@@ -28,6 +30,7 @@ async def test_get_order_product(async_client):
 
 @pytest.mark.asyncio
 async def test_update_order_product(async_client):
+    # Test updating an order-product relation - expects status 200 and updated data in response
     create_payload = {"order_id": 1, "product_id": 1, "amount": 5}
     create_response = await async_client.post("/orders_products", json=create_payload)
     assert create_response.status_code == 201
@@ -46,6 +49,7 @@ async def test_update_order_product(async_client):
 
 @pytest.mark.asyncio
 async def test_delete_order_product(async_client):
+    # Test deleting an order-product relation - expects status 202 and verifies it is deleted
     create_payload = {"order_id": 1, "product_id": 1, "amount": 5}
     create_response = await async_client.post("/orders_products", json=create_payload)
     assert create_response.status_code == 201
@@ -60,6 +64,7 @@ async def test_delete_order_product(async_client):
 
 @pytest.mark.asyncio
 async def test_get_order_products_count(async_client):
+    # Test retrieving the total count of order-product relations - expects status 200 and integer response
     response = await async_client.get("/orders_products/count")
     assert response.status_code == 200
     assert isinstance(response.json(), int)

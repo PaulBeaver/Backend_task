@@ -1,12 +1,27 @@
-from sqlalchemy import DECIMAL, TIMESTAMP, BigInteger, Integer, String, func
+from sqlalchemy import DECIMAL, TIMESTAMP, BigInteger, Index, Integer, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
 
 
 class Product(Base):
+    """
+    Represents the 'products' table in the database.
+
+    Attributes:
+        id (int): Unique identifier for the product.
+        created_at (datetime): Timestamp indicating when the product record was created.
+        product_name (str): Name of the product.
+        price (Decimal): Selling price of the product.
+        cost (Decimal): Cost price of the product.
+        stock (int): Quantity available in stock.
+
+    Relationships:
+        orders_products: Links to the 'OrdersProducts' model for order-product association.
+    """
+
     __tablename__ = "products"
-    # from tiping import Optional -> Mapped[Optional[int]]
+
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     created_at: Mapped[TIMESTAMP | None] = mapped_column(TIMESTAMP, nullable=True, default=func.now())
     product_name: Mapped[str | None] = mapped_column(String(100), nullable=True)
@@ -16,6 +31,5 @@ class Product(Base):
 
     orders_products = relationship("OrdersProducts", back_populates="products")
 
-
-# index prod name
-# __rw_fields__ =(...)
+    # Optional: Index for product_name column to speed up search queries
+    __table_args__ = (Index("idx_product_name", "product_name"),)

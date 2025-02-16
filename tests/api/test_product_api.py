@@ -3,6 +3,7 @@ import pytest
 
 @pytest.mark.asyncio
 async def test_create_product(async_client):
+    # Test creating a product - expects status 201 and correct product data in response
     payload = {
         "product_name": "Test Product",
         "price": 100.0,
@@ -21,6 +22,7 @@ async def test_create_product(async_client):
 
 @pytest.mark.asyncio
 async def test_get_product(async_client):
+    # Test retrieving a product by ID - expects status 200 and correct product data
     create_payload = {
         "product_name": "Test Product",
         "price": 100.0,
@@ -39,6 +41,7 @@ async def test_get_product(async_client):
 
 @pytest.mark.asyncio
 async def test_delete_product(async_client):
+    # Test deleting a product - expects status 202 and verifies the product is deleted
     create_payload = {
         "product_name": "To Delete",
         "price": 50.0,
@@ -57,6 +60,7 @@ async def test_delete_product(async_client):
 
 @pytest.mark.asyncio
 async def test_update_product(async_client):
+    # Test updating a product - expects status 200 and updated product data
     create_payload = {
         "product_name": "Old Name",
         "price": 10.0,
@@ -83,6 +87,7 @@ async def test_update_product(async_client):
 
 @pytest.mark.asyncio
 async def test_batch_create_products(async_client):
+    # Test batch creation of products - expects status 201
     payload = [
         {"product_name": "Product 1", "price": 10.0, "cost": 5.0, "stock": 50},
         {"product_name": "Product 2", "price": 20.0, "cost": 10.0, "stock": 30},
@@ -93,6 +98,7 @@ async def test_batch_create_products(async_client):
 
 @pytest.mark.asyncio
 async def test_get_product_count(async_client):
+    # Test retrieving the total product count - expects status 200 and integer response
     response = await async_client.get("/products/count")
     assert response.status_code == 200
     assert isinstance(response.json(), int)

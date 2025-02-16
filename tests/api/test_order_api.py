@@ -3,6 +3,7 @@ import pytest
 
 @pytest.mark.asyncio
 async def test_create_order(async_client):
+    # Test creating an order - expects status 201 and response with "id" and "created_at"
     response = await async_client.post("/orders", json={})
     assert response.status_code == 201
     data = response.json()
@@ -12,6 +13,7 @@ async def test_create_order(async_client):
 
 @pytest.mark.asyncio
 async def test_get_order(async_client):
+    # Test retrieving an order by ID - expects status 200 and correct order ID in response
     create_response = await async_client.post("/orders", json={})
     order_id = create_response.json()["id"]
 
@@ -23,6 +25,7 @@ async def test_get_order(async_client):
 
 @pytest.mark.asyncio
 async def test_delete_order(async_client):
+    # Test deleting an order by ID - expects status 202 and confirms order is deleted
     create_response = await async_client.post("/orders", json={})
     order_id = create_response.json()["id"]
 
@@ -35,6 +38,7 @@ async def test_delete_order(async_client):
 
 @pytest.mark.asyncio
 async def test_get_order_count(async_client):
+    # Test getting total number of orders - expects status 200 and integer response
     response = await async_client.get("/orders/count")
     assert response.status_code == 200
     assert isinstance(response.json(), int)

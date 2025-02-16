@@ -9,7 +9,21 @@ from app.schemas.order import OrderReturnSchema
 
 
 class CrudOrder(CrudBase):
+    """
+    CRUD operations specific to Order entity.
+    """
+
     async def get_by_id(self, session: AsyncSession, id: int) -> S | None:
+        """
+        Retrieves an order by its ID along with the associated products.
+
+        Args:
+            session: The async database session.
+            id: The ID of the order.
+
+        Returns:
+            A dictionary containing order details and associated products, or an empty dictionary if not found.
+        """
         query = (
             select(
                 Order.id.label("order_id"),
@@ -44,12 +58,13 @@ class CrudOrder(CrudBase):
 
         Args:
             session: The async database session.
-            product_ids: List of product IDs.
-            amounts: List of amounts corresponding to each product.
-            order_created_at: Timestamp for the order creation.
+            create_obj: Object containing product_ids and amounts for creating an order.
 
         Returns:
             The ID of the newly created order.
+
+        Raises:
+            ValueError: If the lengths of product_ids and amounts do not match.
         """
         if len(create_obj.product_ids) != len(create_obj.amounts):
             raise ValueError("The lengths of product_ids and amounts must match.")
@@ -61,7 +76,7 @@ class CrudOrder(CrudBase):
                 :amounts, 
                 :order_created_at
             ) AS order_id;
-        """
+            """
         )
 
         result = await session.execute(
@@ -77,4 +92,5 @@ class CrudOrder(CrudBase):
         return order_id
 
 
+# Instance of CrudOrder to interact with the Order entity using its schema
 order_crud: CrudOrder = CrudOrder(Order, OrderReturnSchema)

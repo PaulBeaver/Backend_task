@@ -9,10 +9,38 @@ from app.logger import logger
 
 
 class ErrorHandlingMiddleware:
+    """
+    Middleware for handling errors and exceptions in FastAPI requests.
+
+    Catches HTTPException, ValidationError, and other unexpected exceptions,
+    logging the error and returning a proper JSONResponse with a status code.
+    """
+
     def __init__(self, app: FastAPI) -> None:
+        """
+        Initializes the middleware with the FastAPI app instance.
+
+        Args:
+            app (FastAPI): The FastAPI application instance.
+        """
         self.app = app
 
     async def __call__(self, request: Request, call_next) -> Union[JSONResponse, Any]:
+        """
+        Handles exceptions during request processing.
+
+        Args:
+            request (Request): The incoming FastAPI request.
+            call_next: The next middleware or endpoint handler.
+
+        Returns:
+            Union[JSONResponse, Any]: JSONResponse in case of errors, or the result of the next handler.
+
+        Handles:
+            - HTTPException: Returns the appropriate HTTP error response.
+            - ValidationError: Returns 400 Bad Request with validation errors.
+            - Exception: Returns 500 Internal Server Error for unexpected issues.
+        """
         try:
             return await call_next(request)
         except HTTPException as exc:
@@ -33,4 +61,10 @@ class ErrorHandlingMiddleware:
 
 
 def setup_error_middleware(app: FastAPI) -> None:
+    """
+    Sets up the error handling middleware in the FastAPI application.
+
+    Args:
+        app (FastAPI): The FastAPI application instance.
+    """
     app.middleware("http")(ErrorHandlingMiddleware(app))
