@@ -22,5 +22,6 @@ def wait_for_postgres(max_retries=30, delay=1):
             print(f"PostgreSQL is not ready yet. Retrying in {delay} seconds... (Attempt {retries + 1}/{max_retries})")
             retries += 1
             time.sleep(delay)
+            raise e
 
     raise RuntimeError("PostgreSQL is not available after maximum retries.")
