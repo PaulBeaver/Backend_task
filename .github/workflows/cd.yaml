@@ -19,10 +19,10 @@ jobs:
           python-version: '3.10'
 
       - name: Install Poetry
-        run: pip install poetry
+        run: pipx install poetry
 
       - name: Install dependencies
-        run: poetry install --no-root
+        run: poetry install --with dev
 
       - name: Lint (flake8)
         run: poetry run flake8
