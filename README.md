@@ -267,6 +267,5 @@ Key takeaways:
 
 This test task is intended to showcase my ability to design, build, and test a backend service with industry best practices.
 
-— **Pavel Bobrov**
 
 ---
