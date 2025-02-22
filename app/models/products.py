@@ -23,7 +23,9 @@ class Product(Base):
     __tablename__ = "products"
 
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
-    created_at: Mapped[TIMESTAMP | None] = mapped_column(TIMESTAMP, nullable=True, default=func.now())
+    created_at: Mapped[TIMESTAMP | None] = mapped_column(
+        TIMESTAMP, nullable=True, default=func.now()
+    )
     product_name: Mapped[str | None] = mapped_column(String(100), nullable=True)
     price: Mapped[float | None] = mapped_column(DECIMAL(15, 2), nullable=True)
     cost: Mapped[float | None] = mapped_column(DECIMAL(15, 2), nullable=True)

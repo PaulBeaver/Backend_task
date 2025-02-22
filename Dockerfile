@@ -1,4 +1,4 @@
-FROM python:3.13
+FROM python:3.10
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -15,6 +15,6 @@ RUN pip install --upgrade pip && \
 
 RUN poetry config virtualenvs.create false && \
     poetry lock && \
-    poetry install --no-root
+    poetry install --without dev --no-root
 
 COPY . .

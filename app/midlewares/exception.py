@@ -45,7 +45,9 @@ class ErrorHandlingMiddleware:
             return await call_next(request)
         except HTTPException as exc:
             logger.error(f"Http error occurred: {exc}")
-            return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+            return JSONResponse(
+                status_code=exc.status_code, content={"detail": exc.detail}
+            )
         except ValidationError as exc:
             logger.error(f"Validation error occurred: {exc}")
             return JSONResponse(
@@ -56,7 +58,9 @@ class ErrorHandlingMiddleware:
             logger.error(f"Unexpected error occurred: {exc}")
             return JSONResponse(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                content={"detail": "Internal server error occurred. Please try again later."},
+                content={
+                    "detail": "Internal server error occurred. Please try again later."
+                },
             )
 
 

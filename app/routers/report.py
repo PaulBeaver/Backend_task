@@ -21,7 +21,9 @@ class ReportRouter(BaseRouter):
         )
 
     @cache(expire=60 * 30)
-    async def report(self, request: Request, start_date: str, end_date: str) -> ReportSchema:
+    async def report(
+        self, request: Request, start_date: str, end_date: str
+    ) -> ReportSchema:
         return await report_crud.get_report(request.state.session, start_date, end_date)
 
 

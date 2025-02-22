@@ -5,7 +5,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.cahce import init_redis_cache
 from app.midlewares import DBSessionMiddleware, setup_error_middleware
-from app.routers import order_product_router, order_router, product_router, report_router
+from app.routers import (
+    order_product_router,
+    order_router,
+    product_router,
+    report_router,
+)
 
 
 @asynccontextmanager

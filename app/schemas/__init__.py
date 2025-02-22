@@ -1,4 +1,4 @@
-from .product import ProductSchema, ProductSchemaCreate
+from .order import OrderReturnSchema, OrderSchema, OrderSchemaCreate
 from .order_product import OrderProductsSchema, OrderProductsSchemaCreate
-from .order import OrderSchemaCreate, OrderSchema, OrderReturnSchema
+from .product import ProductSchema, ProductSchemaCreate
 from .report import ReportSchema

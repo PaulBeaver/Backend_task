@@ -26,12 +26,24 @@ class OrderProductRouter(BaseRouter):
         """
         Sets up API routes specific to order-product operations.
         """
-        self.router.add_api_route(f"{self.prefix}-count", self.get_count, methods=["GET"], status_code=200)
-        self.router.add_api_route(f"{self.prefix}-{{id}}", self.get_by_id, methods=["GET"], status_code=200)
-        self.router.add_api_route(f"{self.prefix}", self.create, methods=["POST"], status_code=201)
-        self.router.add_api_route(f"{self.prefix}/{{id}}", self.delete, methods=["DELETE"], status_code=202)
-        self.router.add_api_route(f"{self.prefix}/{{id}}", self.update, methods=["PUT"], status_code=200)
-        self.router.add_api_route(f"{self.prefix}-batch", self.batch_create, methods=["POST"], status_code=201)
+        self.router.add_api_route(
+            f"{self.prefix}-count", self.get_count, methods=["GET"], status_code=200
+        )
+        self.router.add_api_route(
+            f"{self.prefix}-{{id}}", self.get_by_id, methods=["GET"], status_code=200
+        )
+        self.router.add_api_route(
+            f"{self.prefix}", self.create, methods=["POST"], status_code=201
+        )
+        self.router.add_api_route(
+            f"{self.prefix}/{{id}}", self.delete, methods=["DELETE"], status_code=202
+        )
+        self.router.add_api_route(
+            f"{self.prefix}/{{id}}", self.update, methods=["PUT"], status_code=200
+        )
+        self.router.add_api_route(
+            f"{self.prefix}-batch", self.batch_create, methods=["POST"], status_code=201
+        )
         self.router.add_api_route(
             f"{self.prefix}-batch",
             self.batch_delete,
@@ -39,7 +51,9 @@ class OrderProductRouter(BaseRouter):
             status_code=202,
         )
 
-    async def get_paginated(self, request: Request, page: int = 1, page_size: int = 2) -> list[OrderProductsSchema]:
+    async def get_paginated(
+        self, request: Request, page: int = 1, page_size: int = 2
+    ) -> list[OrderProductsSchema]:
         """
         Retrieves a paginated list of order-product records.
 
@@ -78,7 +92,9 @@ class OrderProductRouter(BaseRouter):
         """
         return await super().get_by_id(request, id)
 
-    async def create(self, request: Request, create_obj: OrderProductsSchemaCreate) -> OrderProductsSchema:
+    async def create(
+        self, request: Request, create_obj: OrderProductsSchemaCreate
+    ) -> OrderProductsSchema:
         """
         Creates a new order-product record.
 
@@ -104,7 +120,9 @@ class OrderProductRouter(BaseRouter):
         """
         return await self.model_crud.delete(request.state.session, id)
 
-    async def update(self, request: Request, id: int, update_obj: OrderProductsSchema) -> OrderProductsSchema:
+    async def update(
+        self, request: Request, id: int, update_obj: OrderProductsSchema
+    ) -> OrderProductsSchema:
         """
         Updates an existing order-product record.
 
@@ -147,4 +165,6 @@ class OrderProductRouter(BaseRouter):
         return await super().batch_delete(request, ids)
 
 
-order_product_router = OrderProductRouter(orders_products_crud, "/orders_products").router
+order_product_router = OrderProductRouter(
+    orders_products_crud, "/orders_products"
+).router

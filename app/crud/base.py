@@ -4,7 +4,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.sql import delete, func, insert, update
 
-
 M = TypeVar("M")
 S = TypeVar("S")
 
@@ -28,12 +27,16 @@ class CrudBase(Generic[M, S]):
         result = await session.execute(stmt)
         return result.scalar_one_or_none()
 
-    async def get_paginated(self, session: AsyncSession, page: int = 1, page_size: int = 2) -> list[S]:
+    async def get_paginated(
+        self, session: AsyncSession, page: int = 1, page_size: int = 2
+    ) -> list[S]:
         """
         Retrieve a paginated list of objects.
         """
         offset = (page - 1) * page_size
-        result = await session.execute(select(self.model).offset(offset).limit(page_size))
+        result = await session.execute(
+            select(self.model).offset(offset).limit(page_size)
+        )
         objs = result.scalars().all()
         return [self.schema.model_validate(obj) for obj in objs]
 

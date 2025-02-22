@@ -5,7 +5,6 @@ from sqlalchemy.pool import AsyncAdaptedQueuePool
 
 from app.config import settings
 
-
 # Metadata object for table definitions.
 metadata = MetaData()
 

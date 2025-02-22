@@ -8,9 +8,8 @@ Create Date: 2025-02-14 16:19:57.769113
 
 from typing import Sequence, Union
 
-import sqlalchemy as sa
 from alembic import op
-
+import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision: str = "18a499df26d0"
@@ -39,6 +38,7 @@ def upgrade() -> None:
         sa.Column("stock", sa.Integer(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
+
     op.create_table(
         "orders_products",
         sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
@@ -55,6 +55,63 @@ def upgrade() -> None:
             ["products.id"],
         ),
         sa.PrimaryKeyConstraint("id"),
+    )
+    op.execute(
+        """CREATE OR REPLACE FUNCTION create_order_with_products(
+        p_product_ids BIGINT[],       
+        p_amounts INT[],              
+        p_order_created_at TIMESTAMP  
+    ) 
+    RETURNS BIGINT 
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+        v_order_id BIGINT;            
+        v_product_id BIGINT;          
+        v_amount INT;                 
+        v_index INT := 1;             
+        v_product_exists BOOLEAN;     
+    BEGIN
+        -- Validate that the lengths of product_ids and amounts match
+        IF array_length(p_product_ids, 1) != array_length(p_amounts, 1) THEN
+            RAISE EXCEPTION 'The lengths of product_ids and amounts must match.';
+        END IF;
+
+        -- Insert a new order into the orders table
+        INSERT INTO orders (created_at)
+        VALUES (p_order_created_at)
+        RETURNING id INTO v_order_id;
+
+        -- Loop through the product IDs and amounts
+        WHILE v_index <= array_length(p_product_ids, 1) LOOP
+            v_product_id := p_product_ids[v_index];
+            v_amount := p_amounts[v_index];
+
+            -- Check if the product exists in the products table
+            SELECT EXISTS (SELECT 1 FROM products WHERE id = v_product_id)
+            INTO v_product_exists;
+
+            -- If the product does not exist, raise an exception
+            IF NOT v_product_exists THEN
+                RAISE EXCEPTION 'Product with ID % does not exist.', v_product_id;
+            END IF;
+
+            -- Insert into orders_products table
+            INSERT INTO orders_products (order_id, product_id, amount, created_at)
+            VALUES (v_order_id, v_product_id, v_amount, p_order_created_at);
+
+            -- Increment the index
+            v_index := v_index + 1;
+        END LOOP;
+
+        -- Return the newly created order ID
+        RETURN v_order_id;
+    EXCEPTION
+        -- Raise an exception in case of any error
+        WHEN OTHERS THEN
+            RAISE EXCEPTION 'Error creating order: %', SQLERRM;
+    END;
+    $$;"""
     )
     # ### end Alembic commands ###
 

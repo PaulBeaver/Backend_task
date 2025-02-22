@@ -5,7 +5,6 @@ from starlette.responses import JSONResponse
 
 from app.crud.base import CrudBase
 
-
 T = TypeVar("T")
 
 
@@ -39,7 +38,9 @@ class BaseRouter:
         """
         raise NotImplementedError
 
-    async def get_paginated(self, request: Request, page: int = 1, page_size: int = 2) -> list[T]:
+    async def get_paginated(
+        self, request: Request, page: int = 1, page_size: int = 2
+    ) -> list[T]:
         """
         Retrieves a paginated list of items.
 
@@ -51,7 +52,9 @@ class BaseRouter:
         Returns:
             list[T]: List of retrieved items.
         """
-        return await self.model_crud.get_paginated(request.state.session, page, page_size)
+        return await self.model_crud.get_paginated(
+            request.state.session, page, page_size
+        )
 
     async def get_count(self, request: Request) -> int:
         """
