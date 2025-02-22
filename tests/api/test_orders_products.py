@@ -235,7 +235,6 @@ def test_delete_order_product(client):
     ), f"Create order_product failed: {create_response.json()}"
     order_product_id = create_response.json()["id"]
 
-    # Attempt to delete the order-product entry
     delete_response = client.delete(f"/orders_products/{order_product_id}")
 
     if delete_response.status_code == 202:
@@ -251,7 +250,7 @@ def test_delete_order_product(client):
 def test_get_order_products_count(client):
     """Retrieves the count of order-product entries and ensures the response is valid."""
 
-    response = client.get("/orders_products-count")  # ✅ Fixed endpoint name
+    response = client.get("/orders_products-count")
     assert (
         response.status_code == 200
     ), f"Unexpected status code: {response.status_code}, response: {response.json()}"
@@ -260,4 +259,4 @@ def test_get_order_products_count(client):
     assert isinstance(
         count, int
     ), f"Expected an integer count, but got {type(count)}: {count}"
-    print(f"✅ Order products count: {count}")
+    print(f"Order products count: {count}")
