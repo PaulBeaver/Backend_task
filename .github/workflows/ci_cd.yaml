@@ -56,6 +56,8 @@ jobs:
           poetry run isort . --check-only
           poetry run flake8
          
+      - name: Stop existing containers
+        run: docker compose -f docker-compose-tests.yml down || true
 
       - name: Run alembic migrations
         run: poetry run alembic upgrade head
@@ -94,4 +96,5 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/myapp:latest
- 
+
+

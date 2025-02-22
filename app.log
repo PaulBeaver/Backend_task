@@ -599,3 +599,6 @@ DETAIL:  Key (id)=(3) is still referenced from table "orders_products".
 2025-02-22 10:58:42,642 - my_logger - ERROR - Unexpected error occurred: 1 validation errors:
   {'type': 'int_type', 'loc': ('response',), 'msg': 'Input should be a valid integer', 'input': ProductSchema(product_name='To Delete', price=50.0, cost=20.0, stock=5, id=3, created_at=datetime.datetime(2025, 2, 22, 9, 58, 42, 635336))}
 
+2025-02-22 12:03:48,551 - my_logger - ERROR - Unexpected error occurred: 1 validation errors:
+  {'type': 'int_type', 'loc': ('response',), 'msg': 'Input should be a valid integer', 'input': ProductSchema(product_name='To Delete', price=50.0, cost=20.0, stock=5, id=3, created_at=datetime.datetime(2025, 2, 22, 11, 3, 48, 544587))}
+
