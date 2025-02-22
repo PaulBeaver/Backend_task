@@ -18,6 +18,7 @@ def start_postgres_container():
                 "up",
                 "-d",
                 "--build",
+                "--force-recreate",
             ],
             check=True,
             stdout=subprocess.PIPE,
