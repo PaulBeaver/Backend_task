@@ -1,4 +1,7 @@
 import pytest
+from sqlalchemy import text
+
+from app.db import async_session_maker
 
 
 def test_create_product(client):

@@ -1,6 +1,11 @@
 import pytest
 
-from tests.conftest import GLOBAL_CLIENT as client
+
+@pytest.fixture
+def client():
+    from tests.conftest import client
+
+    return client
 
 
 def test_hello_world(client):
