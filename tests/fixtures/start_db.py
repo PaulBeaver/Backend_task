@@ -11,14 +11,11 @@ def start_postgres_container():
     try:
         subprocess.run(
             [
-                "docker",
-                "compose",
+                "docker-compose",
                 "-f",
                 "docker-compose-tests.yml",
                 "up",
                 "-d",
-                "--build",
-                "--force-recreate",
             ],
             check=True,
             stdout=subprocess.PIPE,
